@@ -1,0 +1,14 @@
+# GIT
+
+function gpo() {
+  git checkout master
+  git pull
+  git branch -d $1
+  git checkout $1
+}
+
+function gram() {
+  gpo $1
+  git rebase master
+}
+
