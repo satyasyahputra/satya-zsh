@@ -1,6 +1,4 @@
 # setup
 ```
 ./setup.sh
-
-
 ```

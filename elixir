@@ -1,0 +1,28 @@
+# Elixir for MP
+
+function grun() {
+  (cd apps/$1 && mix run --no-halt)
+}
+
+function gtes() {
+  (cd apps/$1 && mix test --no-start)
+}
+
+function gcro() {
+  (cd apps/$1 && mix credo --strict)
+}
+
+function gcipu() {
+  echo 'mix format' && \
+  mix format && \
+  echo 'run test' && \
+  grun $3 && \
+  echo 'run credo' && \
+  gcro $3 && \
+  echo 'commit and push' && \
+  ga $1 && \
+  gcmsg $2 && \
+  ./scripts/check_changelog "pegasus" "apps/pegasus/UNRELEASED.md" && \
+  ./scripts/check_changelog "consumer" "apps/consumer/UNRELEASED.md" && \
+  gp
+}
